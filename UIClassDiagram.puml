@@ -1,0 +1,101 @@
+@startuml
+class UI.alert.YesNoScreen {
++ {static} boolean display()
+}
+class UI.alert.InPlague {
++ {static} void display()
+}
+class UI.component.TileButton {
+- int row
+- int col
+- ImageView building
++ <<Create>> TileButton(int,int)
++ void updateImage(String)
++ StackPane tileImage()
++ void setRow(int)
++ void setCol(int)
++ int getRow()
++ int getCol()
+}
+class UI.alert.EventAlertBox {
++ {static} void display(String,String,String)
+}
+class UI.alert.InsufficientAlert {
++ {static} void display(int)
+}
+class UI.alert.BuyMenu {
++ {static} Stage stage
++ {static} int curRow
++ {static} int curCol
++ {static} void display(int,int)
++ {static} void stageClose()
+}
+class UI.alert.BuildingInteraction {
++ {static} void display(Tile,int,int)
+}
+class UI.alert.TownHallUpgrade {
++ {static} void display()
+}
+class UI.component.BuildingChoiceBox {
++ <<Create>> BuildingChoiceBox(int,String,String,int)
+}
+class UI.alert.MercenaryAlert {
++ {static} void display(int,int)
+}
+class UI.alert.BuyTile {
++ {static} void display(Tile,int,int)
+}
+class UI.alert.GameEndAlert {
++ {static} void display(String,String)
+}
+class UI.pane.GameLoop {
+- {static} int day
+- {static} GameLogic gameInstance
+- {static} EventMaker eventM
++ {static} Stage st
++ {static} void startGame(Stage)
++ {static} void gameStart()
++ {static} void nextDay()
++ {static} void event()
++ {static} void raidEvent()
++ {static} void faithEvent()
++ {static} void mainEvent()
++ {static} int getDay()
+}
+class UI.pane.IngameStage {
+- GridPane playArea
++ {static} ArrayList<TileButton> map
+- VBox displayArea
+- {static} Text day
+- {static} Text money
+- {static} Text power
+- {static} Text income
+- {static} Text expense
+- {static} ProgressBar faithBar
+- {static} Text builder
+- {static} ImageView plagueStatus
+- {static} ImageView droughtStatus
++ <<Create>> IngameStage()
++ {static} void update(int,int,String)
+- GridPane createPlayArea()
+- VBox createDisplayArea()
++ {static} void updateInfo()
++ {static} void setDroughtStatus(boolean)
++ {static} void setPlagueStatus(boolean)
+}
+class UI.pane.StartGame {
+- Stage stage
++ <<Create>> StartGame(Stage)
+}
+class UI.misc.BackgroundMusic {
+- {static} MediaPlayer mediaPlayer
++ void play()
+}
+
+
+javafx.scene.layout.StackPane <|-- UI.component.TileButton
+javafx.scene.layout.VBox <|-- UI.alert.BuildingInteraction
+javafx.scene.layout.VBox <|-- UI.component.BuildingChoiceBox
+UI.pane.BorderPane <|-- UI.pane.IngameStage
+javafx.scene.layout.VBox <|-- UI.pane.StartGame
+@enduml

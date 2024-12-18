@@ -1,0 +1,23 @@
+Civilization game
+
+Goal of this game is to survive 100 rounds
+
+Player will start with townhall level 1 (1 builder) a Farm and some medium each day builder can do one job and that job will finished on the next day
+The empire will be start with 3 by 3 maximum 5 by 5 tile which townhall will be located on the center of the empire
+
+TownHall upgrade to be able to do buid or clear more area in one day							TownHall upgrade to get more builder
+Army can be use to survive the event											Army Camp there is a cost for maintaining army camp
+Resource is need to support army and to upgrade other side								Farm which produce medium of the exchange
+Intelligence will enhance Army power Resource efficiency and survey success rate					School which will be consist of army school resource school and intelligence school
+Explore if you are lucky enough you can end the game faster								Camping site the more you upgrade to better chance of winner the game faster
+Faith there is a chance you will gain some resource from outsider or neglect the attack from event even get some 	Temple the more you upgrade the more passive income and effect
+
+Every 10 +- random days main event is going to occur (premade event) like drawing event card from the deck
+This event is going to make the game more challenging like getting raid so you have to fight back but every raid an ArmyCamp will be destroy
+Everytime player lose to raid some army and resource building will destroy and there is a chance that player will lose the game depend on the equation of the lost rate
+
+and mini event will happen randomly the more faith the more likely mini event will going to occur which mini event will always be beneficial
+
+We can choose to build any building on anytile
+
+we need game panel to monitoring game state

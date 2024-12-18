@@ -1,0 +1,287 @@
+@startuml
+abstract class logic.building.base.School {
++ {static} int genMul
++ {static} int maintainCost
+}
+class logic.building.misc.Tile {
+- Building building
+- boolean ownByPlayer
+- boolean clearingArea
++ <<Create>> Tile()
++ <<Create>> Tile(boolean)
++ <<Create>> Tile(boolean,Building)
++ boolean isOccupied()
++ void setBuilding(Building)
++ void removeBuilding()
++ Building getBuilding()
++ boolean isOwnByPlayer()
++ void setOwnByPlayer(boolean)
++ void setClearingArea(boolean)
++ boolean isClearingArea()
+}
+class logic.building.TownHall {
+- int level
++ String url1
++ String url2
++ String url3
+- boolean upgrading
++ <<Create>> TownHall()
++ void upgradeLevel()
++ String buyUpgrade()
++ boolean isUpgrading()
++ int getLevel()
++ String getUrl()
++ String toString()
+}
+interface logic.building.base.Activatable {
++ boolean isActive()
++ void setActive(boolean)
++ void turnOn(boolean)
+}
+class logic.building.misc.BuildingRuin {
++ String url1
+- int buildingId
++ <<Create>> BuildingRuin(int)
++ int getBuildingId()
++ String toString()
++ String getUrl()
+}
+class logic.building.Temple {
+- boolean active
++ {static} int faithGen
++ {static} int maintainCost
++ String url1
++ <<Create>> Temple()
++ void turnOn(boolean)
++ void setActive(boolean)
++ boolean isActive()
++ String getUrl()
++ String toString()
+}
+class logic.utils.Player {
+- int money
+- int power
+- int faithPercentage
+- int maxBuilder
+- int availableBuilder
++ <<Create>> Player()
++ int getMoney()
++ void setMoney(int)
++ void addMoney(int)
++ void subMoney(int)
++ int getPower()
++ void setPower(int)
++ void addPower(int)
++ int getFaithPercentage()
++ void setFaithPercentage(int)
++ void gainFaith(int)
++ void faithPercentageDecay()
++ int getAvailableBuilder()
++ void setAvailableBuilder(int)
++ int getMaxBuilder()
++ void setMaxBuilder(int)
++ void upgradeTownHall()
++ void useBuilder()
+}
+class logic.utils.GameLogic {
+- int plagueCount
+- int droughtCount
+- boolean gameOver
+- TownHall townHall
+- int income
+- int powerGrowth
+- int incomeMultiplier
+- int powerMultiplier
+- int expense
+- int faithGrowth
+- Player player
+- ArrayList<ArrayList<Tile>> map
+- Map<Integer,Integer> buildingCost
+- {static} GameLogic instance
+- <<Create>> GameLogic()
++ {static} GameLogic getInstance()
++ {static} void newInstance()
++ {static} void killInstance()
+- void setMap()
++ void dailyUpdate()
++ {static} void selectTile(int,int)
++ void activateBuilding(Tile)
++ void onCampingSite()
++ void offCampingSite()
++ void onArmyCamp()
++ void offArmyCamp()
++ void onArmySchool()
++ void offArmySchool()
++ void onFarm()
++ void offFarm()
++ void onFarmSchool()
++ void offFarmSchool()
++ void onTemple()
++ void offTemple()
+- void clearValue()
+- void initBuildingCost()
++ {static} boolean haveEnoughMoney(int)
++ {static} boolean haveEnoughBuilder()
++ void destroyBuilding(int)
++ boolean isGameOver()
++ void gameEnd()
++ void effectDrought(int)
++ void effectPlague(int)
++ boolean inPlague()
++ boolean inDrought()
++ Player getPlayer()
++ int getIncome()
++ void setIncome(int)
++ int getPowerGrowth()
++ void setPowerGrowth(int)
++ int getIncomeMultiplier()
++ void setIncomeMultiplier(int)
++ int getPowerMultiplier()
++ void setPowerMultiplier(int)
++ int getExpense()
++ void setExpense(int)
++ int getFaithGrowth()
++ void setFaithGrowth(int)
++ ArrayList<ArrayList<Tile>> getMap()
++ TownHall getTownHall()
++ Map<Integer,Integer> getBuildingCost()
+}
+class logic.building.ArmyCamp {
+- boolean active
++ {static} int powerGen
++ {static} int maintainCost
++ String url1
++ <<Create>> ArmyCamp()
++ void turnOn(boolean)
++ void setActive(boolean)
++ String toString()
++ boolean isActive()
++ String getUrl()
+}
+interface logic.building.base.Damageable {
+}
+class logic.utils.Battle {
+- GameLogic gameInstance
+- int raidPower
+- boolean win
+- Random random
+- int playerPower
++ <<Create>> Battle(int)
++ void punish()
++ boolean isWinning()
++ void setRaidPower(int)
++ int getRaidPower()
+}
+abstract class logic.building.base.Building {
++ String url1
++ {abstract}String getUrl()
++ {abstract}String toString()
+}
+class logic.building.Farm {
++ {static} int moneyGen
++ String url1
++ <<Create>> Farm()
++ String getUrl()
++ String toString()
+}
+class logic.building.misc.ConstructionSite {
+- int targetBuildingCode
++ String url1
++ <<Create>> ConstructionSite(int)
++ Building construct()
++ String toString()
++ String getUrl()
+}
+class logic.building.ArmySchool {
+- boolean active
++ String url1
++ <<Create>> ArmySchool()
++ void turnOn(boolean)
++ void setActive(boolean)
++ boolean isActive()
++ String toString()
++ String getUrl()
+}
+interface logic.building.base.Demolishable {
+}
+class logic.building.CampingSite {
++ String url1
+- int countDay
+- boolean active
+- boolean success
+- int successRate
++ {static} int maintainCost
+- Random random
++ <<Create>> CampingSite()
++ void turnOn(boolean)
++ void setActive(boolean)
++ void accumulate()
++ void reset()
++ void explore()
++ int getSuccesRate()
++ void setSuccessRate(int)
++ boolean isActive()
++ int getCountDay()
++ boolean countDown()
++ boolean isExploring()
++ String toString()
++ String getUrl()
+}
+class logic.building.FarmSchool {
+- boolean active
++ String url1
++ <<Create>> FarmSchool()
++ void turnOn(boolean)
++ void setActive(boolean)
++ boolean isActive()
++ String getUrl()
++ String toString()
+}
+class logic.building.misc.Demolishing {
++ String url1
++ String toString()
++ String getUrl()
+}
+class logic.utils.EventMaker {
+- ArrayList<Event> mainEvents
+- ArrayList<Event> faithEvents
+- ArrayList<Event> raidEvents
+- int seqCounter
+- int raidCounter
+- int faithCounter
+- Random random
++ <<Create>> EventMaker()
++ Event getMainEvent(int)
++ Event getFaithEvent()
++ Event getRaidEvent()
+- void initiateMainEvents()
+- void initiateRaidEvents()
+- void initiateFaithEvents()
+}
+
+
+logic.building.base.Building <|-- logic.building.base.School
+logic.building.base.Building <|-- logic.building.TownHall
+logic.building.base.Building <|-- logic.building.misc.BuildingRuin
+logic.building.base.Activatable <|.. logic.building.Temple
+logic.building.base.Demolishable <|.. logic.building.Temple
+logic.building.base.Building <|-- logic.building.Temple
+logic.building.base.Activatable <|.. logic.building.ArmyCamp
+logic.building.Demolishable <|.. logic.building.ArmyCamp
+logic.building.Damageable <|.. logic.building.ArmyCamp
+logic.building.Building <|-- logic.building.ArmyCamp
+logic.building.base.Demolishable <|.. logic.building.Farm
+logic.building.base.Damageable <|.. logic.building.Farm
+logic.building.base.Building <|-- logic.building.Farm
+logic.building.base.Building <|-- logic.building.misc.ConstructionSite
+logic.building.base.Activatable <|.. logic.building.ArmySchool
+logic.building.base.Demolishable <|.. logic.building.ArmySchool
+logic.building.base.School <|-- logic.building.ArmySchool
+logic.building.base.Activatable <|.. logic.building.CampingSite
+logic.building.base.Demolishable <|.. logic.building.CampingSite
+logic.building.base.Building <|-- logic.building.CampingSite
+logic.building.base.Activatable <|.. logic.building.FarmSchool
+logic.building.base.Demolishable <|.. logic.building.FarmSchool
+logic.building.base.School <|-- logic.building.FarmSchool
+logic.building.base.Building <|-- logic.building.misc.Demolishing
+@enduml

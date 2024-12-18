@@ -1,0 +1,118 @@
+@startuml
+class logic.utils.Battle {
+- GameLogic gameInstance
+- int raidPower
+- boolean win
+- Random random
+- int playerPower
++ <<Create>> Battle(int)
++ void punish()
++ boolean isWinning()
++ void setRaidPower(int)
++ int getRaidPower()
+}
+class logic.utils.Player {
+- int money
+- int power
+- int faithPercentage
+- int maxBuilder
+- int availableBuilder
++ <<Create>> Player()
++ int getMoney()
++ void setMoney(int)
++ void addMoney(int)
++ void subMoney(int)
++ int getPower()
++ void setPower(int)
++ void addPower(int)
++ int getFaithPercentage()
++ void setFaithPercentage(int)
++ void gainFaith(int)
++ void faithPercentageDecay()
++ int getAvailableBuilder()
++ void setAvailableBuilder(int)
++ int getMaxBuilder()
++ void setMaxBuilder(int)
++ void upgradeTownHall()
++ void useBuilder()
+}
+class logic.utils.EventMaker {
+- ArrayList<Event> mainEvents
+- ArrayList<Event> faithEvents
+- ArrayList<Event> raidEvents
+- int seqCounter
+- int raidCounter
+- int faithCounter
+- Random random
++ <<Create>> EventMaker()
++ Event getMainEvent(int)
++ Event getFaithEvent()
++ Event getRaidEvent()
+- void initiateMainEvents()
+- void initiateRaidEvents()
+- void initiateFaithEvents()
+}
+class logic.utils.GameLogic {
+- int plagueCount
+- int droughtCount
+- boolean gameOver
+- TownHall townHall
+- int income
+- int powerGrowth
+- int incomeMultiplier
+- int powerMultiplier
+- int expense
+- int faithGrowth
+- Player player
+- ArrayList<ArrayList<Tile>> map
+- Map<Integer,Integer> buildingCost
+- {static} GameLogic instance
+- <<Create>> GameLogic()
++ {static} GameLogic getInstance()
++ {static} void newInstance()
++ {static} void killInstance()
+- void setMap()
++ void dailyUpdate()
++ {static} void selectTile(int,int)
++ void activateBuilding(Tile)
++ void onCampingSite()
++ void offCampingSite()
++ void onArmyCamp()
++ void offArmyCamp()
++ void onArmySchool()
++ void offArmySchool()
++ void onFarm()
++ void offFarm()
++ void onFarmSchool()
++ void offFarmSchool()
++ void onTemple()
++ void offTemple()
+- void clearValue()
+- void initBuildingCost()
++ {static} boolean haveEnoughMoney(int)
++ {static} boolean haveEnoughBuilder()
++ void destroyBuilding(int)
++ boolean isGameOver()
++ void gameEnd()
++ void effectDrought(int)
++ void effectPlague(int)
++ boolean inPlague()
++ boolean inDrought()
++ Player getPlayer()
++ int getIncome()
++ void setIncome(int)
++ int getPowerGrowth()
++ void setPowerGrowth(int)
++ int getIncomeMultiplier()
++ void setIncomeMultiplier(int)
++ int getPowerMultiplier()
++ void setPowerMultiplier(int)
++ int getExpense()
++ void setExpense(int)
++ int getFaithGrowth()
++ void setFaithGrowth(int)
++ ArrayList<ArrayList<Tile>> getMap()
++ TownHall getTownHall()
++ Map<Integer,Integer> getBuildingCost()
+}
+@enduml

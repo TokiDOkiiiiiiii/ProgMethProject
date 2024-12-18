@@ -1,0 +1,82 @@
+@startuml
+class event.faith.Holywarrior {
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+class event.faith.Philanthropy {
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+class event.main.Rebellion {
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+abstract class event.base.Event {
+# GameLogic gameInstance
+# Random random
++ <<Create>> Event()
++ {abstract}void effect()
++ {abstract}String getResult()
++ {abstract}String toString()
++ {abstract}String getUrl()
+}
+class event.main.Earthquake {
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+class event.main.Raid {
+- int raidPower
+- boolean result
++ <<Create>> Raid(int)
++ void effect()
++ String getUrl()
++ String toString()
++ String getResult()
+}
+class event.main.Plague {
+- int n
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+class event.main.Burglar {
+- int stolenMoney
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+class event.main.Drought {
+- int n
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+class event.main.Mercenary {
++ void effect()
++ String getResult()
++ String toString()
++ String getUrl()
+}
+
+
+event.base.Event <|-- event.faith.Holywarrior
+event.base.Event <|-- event.faith.Philanthropy
+event.base.Event <|-- event.main.Rebellion
+event.base.Event <|-- event.main.Earthquake
+event.base.Event <|-- event.main.Raid
+event.base.Event <|-- event.main.Plague
+event.base.Event <|-- event.main.Burglar
+event.base.Event <|-- event.main.Drought
+event.base.Event <|-- event.main.Mercenary
+@enduml
